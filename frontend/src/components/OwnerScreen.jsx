@@ -48,7 +48,7 @@ export default function OwnerScreen({ user, token, onBack }) {
   useEffect(() => {
     if (!restaurant?._id || !token) return;
 
-    const socket = io("http://localhost:5000", { auth: { token } });
+    const socket = io(`${import.meta.env.VITE_API_URL}`, { auth: { token } });
     socketRef.current = socket;
 
     socket.on("connect", () => {
@@ -118,7 +118,7 @@ export default function OwnerScreen({ user, token, onBack }) {
   const fetchMyRestaurant = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/restaurants/owner/mine", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/restaurants/owner/mine`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -140,7 +140,7 @@ export default function OwnerScreen({ user, token, onBack }) {
 
   const fetchVideos = async (restaurantId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/food/restaurant/${restaurantId}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/food/restaurant/${restaurantId}`);
       const data = await res.json();
       if (res.ok) {
         setVideos(data.data.foodItems || data.data.items || []);
@@ -154,7 +154,7 @@ export default function OwnerScreen({ user, token, onBack }) {
   const fetchOrders = async (restaurantId) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/orders/restaurant/${restaurantId}?limit=30`,
+        `${import.meta.env.VITE_API_URL}/api/orders/restaurant/${restaurantId}?limit=30`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const data = await res.json();
@@ -166,7 +166,7 @@ export default function OwnerScreen({ user, token, onBack }) {
 
   const handleUpdateOrderStatus = async (orderId, status) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${orderId}/status`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}/status`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -192,7 +192,7 @@ export default function OwnerScreen({ user, token, onBack }) {
     if (!restaurantName.trim()) { setError("Please enter a restaurant name"); return; }
     setError(null);
     try {
-      const res = await fetch("http://localhost:5000/api/restaurants", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/restaurants`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: restaurantName }),
@@ -211,7 +211,7 @@ export default function OwnerScreen({ user, token, onBack }) {
 
   const handleToggleStatus = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/restaurants/${restaurant._id}/toggle`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/restaurants/${restaurant._id}/toggle`, {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -236,7 +236,7 @@ export default function OwnerScreen({ user, token, onBack }) {
     formData.append("isVeg", foodIsVeg);
     formData.append("video", videoFile);
     try {
-      const res = await fetch("http://localhost:5000/api/food", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/food`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -614,7 +614,7 @@ export default function OwnerScreen({ user, token, onBack }) {
                           <div className="w-14 h-14 rounded-xl overflow-hidden bg-neutral-800 flex-shrink-0 flex items-center justify-center">
                             {item.thumbnailUrl ? (
                               <img
-                                src={`http://localhost:5000/${item.thumbnailUrl.replace(/^\/+/, "")}`}
+                                src={`${import.meta.env.VITE_API_URL}/${item.thumbnailUrl.replace(/^\/+/, "")}`}
                                 alt={item.name}
                                 className="w-full h-full object-cover"
                               />
@@ -706,7 +706,7 @@ export default function OwnerScreen({ user, token, onBack }) {
                         <div key={video._id} className="bg-neutral-800/50 p-4 rounded-2xl border border-neutral-700/50 flex items-center gap-4">
                           <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-neutral-700 flex-shrink-0">
                             {video.thumbnailUrl ? (
-                              <img src={`http://localhost:5000/${video.thumbnailUrl.replace(/^\/+/, "")}`} alt={video.name} className="w-full h-full object-cover" />
+                              <img src={`${import.meta.env.VITE_API_URL}/${video.thumbnailUrl.replace(/^\/+/, "")}`} alt={video.name} className="w-full h-full object-cover" />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center text-neutral-400 text-lg">🎥</div>
                             )}
