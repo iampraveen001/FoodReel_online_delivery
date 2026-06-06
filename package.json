@@ -1,0 +1,14 @@
+{
+  "name": "foodreels-root",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "install": "cd frontend && npm install"
+  },
+  "dependencies": {
+    "@react-google-maps/api": "^2.20.8",
+    "socket.io": "^4.8.3"
+  }
+}

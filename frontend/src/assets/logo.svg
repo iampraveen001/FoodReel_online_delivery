@@ -1,0 +1,15 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7c948"/>
+      <stop offset="100%" stop-color="#f0b429"/>
+    </linearGradient>
+  </defs>
+  <circle cx="150" cy="150" r="140" fill="url(#grad)" />
+  <path d="M90 130 C90 90 130 70 150 90 C170 70 210 90 210 130 C230 130 230 170 210 170 H90 C70 170 70 130 90 130 Z" fill="#ffffff" />
+  <path d="M110 170 C110 190 120 200 150 200 C180 200 190 190 190 170" fill="#ffffff" />
+  <path d="M120 170 H180" stroke="#f7c948" stroke-width="8" stroke-linecap="round" />
+  <path d="M100 120 C120 90 180 90 200 120" stroke="#7b4e1b" stroke-width="10" fill="none" stroke-linecap="round" />
+  <text x="150" y="230" font-family="'Segoe UI', sans-serif" font-size="34" text-anchor="middle" fill="#5b3712" font-weight="800">Find Your</text>
+  <text x="150" y="270" font-family="'Segoe UI', sans-serif" font-size="44" text-anchor="middle" fill="#5b3712" font-weight="900">Food</text>
+</svg>
