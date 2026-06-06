@@ -43,7 +43,7 @@ export default function ReelCard({ food, onAdd, user, isCurrent, token }) {
     }
 
     try {
-      const response = await fetch(`http://localhost:5000/api/food/${food.id}/like`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/food/${food.id}/like`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ export default function ReelCard({ food, onAdd, user, isCurrent, token }) {
             <div className="relative w-full max-w-[420px] aspect-[9/16] overflow-hidden rounded-3xl">
               <video 
                 ref={videoRef}
-                src={`http://localhost:5000/${food.videoUrl.replace(/\\/g, '/')}`} 
+                src={`${import.meta.env.VITE_API_URL}/${food.videoUrl.replace(/\\/g, '/')}`} 
                 className="absolute inset-0 w-full h-full object-cover"
                 autoPlay 
                 loop

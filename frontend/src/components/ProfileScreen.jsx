@@ -57,7 +57,7 @@ export default function ProfileScreen({ user, token, onProfileUpdate, onRestaura
     if (!avatar) return null;
     return avatar.startsWith("http")
       ? avatar
-      : `http://localhost:5000/${avatar.replace(/^\/+/, "")}`;
+      : `${import.meta.env.VITE_API_URL}/${avatar.replace(/^\/+/, "")}`;
   };
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function ProfileScreen({ user, token, onProfileUpdate, onRestaura
     try {
       const formData = new FormData();
       formData.append("avatar", file);
-      const res  = await fetch("http://localhost:5000/api/users/profile", {
+      const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/users/profile`, {
         method: "PUT",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -102,7 +102,7 @@ export default function ProfileScreen({ user, token, onProfileUpdate, onRestaura
   const fetchRestaurantStatus = async () => {
     try {
       setLoadingRestaurant(true);
-      const res  = await fetch("http://localhost:5000/api/restaurants/owner/mine", {
+      const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/restaurants/owner/mine`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();

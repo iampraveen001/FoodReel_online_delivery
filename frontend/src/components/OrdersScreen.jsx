@@ -17,8 +17,8 @@ export default function OrdersScreen({ user, token, onBack }) {
     try {
       setLoading(true);
       const endpoint = user?.role === "deliveryman"
-        ? "http://localhost:5000/api/orders/deliveryman/mine"
-        : "http://localhost:5000/api/orders/my";
+        ? `${import.meta.env.VITE_API_URL}/api/orders/deliveryman/mine`
+        : `${import.meta.env.VITE_API_URL}/api/orders/my`;
       const res = await fetch(endpoint, {
         headers: {
           Authorization: `Bearer ${token}`
@@ -43,7 +43,7 @@ export default function OrdersScreen({ user, token, onBack }) {
     setCancellingId(orderId);
     setConfirmCancelId(null);
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${orderId}/cancel`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}/cancel`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

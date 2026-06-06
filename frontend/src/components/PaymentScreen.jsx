@@ -70,7 +70,7 @@ export default function PaymentScreen({ total, token, user, onPaymentSuccess, on
     const payload = await buildOrderPayload();
     if (!payload) throw new Error("Cart is empty or missing restaurant info.");
 
-    const res = await fetch("http://localhost:5000/api/orders", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -108,7 +108,7 @@ export default function PaymentScreen({ total, token, user, onPaymentSuccess, on
       setPlacedOrder(order);
 
       // 2. Create Razorpay payment order
-      const res = await fetch("http://localhost:5000/api/payment/create-order", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/create-order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -132,7 +132,7 @@ export default function PaymentScreen({ total, token, user, onPaymentSuccess, on
     setShowRazorpay(false);
     setProcessing(true);
     try {
-      const res = await fetch("http://localhost:5000/api/payment/verify", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/verify`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

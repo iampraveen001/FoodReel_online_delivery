@@ -45,7 +45,7 @@ export default function FoodAppHome({ onSetScreen }) {
   const fetchData = async () => {
     try {
       // Fetch featured food items
-      const foodRes = await fetch('http://localhost:5000/api/food?limit=4&sort=-likes');
+      const foodRes = await fetch(`${import.meta.env.VITE_API_URL}/api/food?limit=4&sort=-likes`);
       const foodData = await foodRes.json();
       
       if (foodData.success) {
@@ -69,7 +69,7 @@ export default function FoodAppHome({ onSetScreen }) {
       }
 
       // Fetch nearby restaurants
-      const restRes = await fetch('http://localhost:5000/api/restaurants?limit=4');
+      const restRes = await fetch(`${import.meta.env.VITE_API_URL}/api/restaurants?limit=4`);
       const restData = await restRes.json();
       
       if (restData.success) {

@@ -270,7 +270,7 @@ export default function OwnerScreen({ user, token, onBack }) {
     formData.append("description", foodDesc);
     formData.append("isVeg", foodIsVeg);
     try {
-      const res = await fetch("http://localhost:5000/api/food", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/food`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
@@ -292,7 +292,7 @@ export default function OwnerScreen({ user, token, onBack }) {
   const handleToggleAvailability = async (itemId) => {
     setTogglingId(itemId);
     try {
-      const res = await fetch(`http://localhost:5000/api/food/${itemId}/toggle`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/food/${itemId}/toggle`, {
         method: "PATCH",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -315,7 +315,7 @@ export default function OwnerScreen({ user, token, onBack }) {
     if (!window.confirm("Remove this item from the menu?")) return;
     setDeletingId(itemId);
     try {
-      const res = await fetch(`http://localhost:5000/api/food/${itemId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/food/${itemId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -334,7 +334,7 @@ export default function OwnerScreen({ user, token, onBack }) {
     const newPrice = parseFloat(editingPrice[itemId]);
     if (!newPrice || newPrice <= 0) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/food/${itemId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/food/${itemId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ price: newPrice }),

@@ -5,7 +5,7 @@ import { GoogleMap, useJsApiLoader, Marker, Polyline } from "@react-google-maps/
 import DeliveryDashboard from "./DeliveryDashboard";
 
 const MAPS_API_KEY =  import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-const API_BASE = "http://localhost:5000";
+const API_BASE = import.meta.env.VITE_API_URL;
 
 // Haversine formula — returns distance in km between two GPS coords
 const haversineKm = (a, b) => {

@@ -20,7 +20,7 @@ export default function CartScreen({ onProceedToPayment, user, token }) {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:5000/api/orders/deliveryman/mine", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/deliveryman/mine`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -41,7 +41,7 @@ export default function CartScreen({ onProceedToPayment, user, token }) {
 
   const handleAcceptOrder = async (orderId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${orderId}/accept`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}/accept`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ export default function CartScreen({ onProceedToPayment, user, token }) {
 
   const handleMarkDelivered = async (orderId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${orderId}/deliver`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/${orderId}/deliver`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

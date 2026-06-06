@@ -14,7 +14,7 @@ export default function ReelsScreen({ onAddToast, user, token }) {
     if (loading) return;
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/food/reels?page=${page}&limit=10`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/food/reels?page=${page}&limit=10`);
       const data = await res.json();
       
       if (res.ok && data.data?.feed?.length > 0) {
