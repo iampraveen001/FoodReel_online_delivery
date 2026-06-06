@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config()
 const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
@@ -22,10 +22,11 @@ const paymentRoutes = require("./routes/payment");
 const app = express();
 const httpServer = http.createServer(app);
 
+const url = process.env.CLIENT_URL
 // ── Socket.IO ─────────────────────────────────────────────
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: url || "http://localhost:5173",
     methods: ["GET", "POST"],
   },
 });
@@ -33,7 +34,7 @@ setupSocket(io);
 app.set("io", io); // available in controllers via req.app.get("io")
 
 // ── Middleware ────────────────────────────────────────────
-app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: url || "http://localhost:5173", credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
